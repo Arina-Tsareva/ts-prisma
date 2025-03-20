@@ -25,13 +25,13 @@ export default NextAuth({
         token.accessToken = account.access_token;
       }
       if (user) {
-        token.id = user.id;
+        token.id = user.id; 
       }
       return token;
     },
     async session({ session, token }) {
     
-      if (session.user && token.id) {
+      if (session.user && typeof token.id === 'string') {
         session.user.id = token.id; 
       }
       return session;
